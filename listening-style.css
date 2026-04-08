@@ -1,0 +1,227 @@
+* { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+:root {
+  --bg: #fcfffd;
+  --text: #152019;
+  --muted: #5f6f66;
+  --line: rgba(35, 69, 52, 0.14);
+  --mint: rgba(219, 247, 235, 0.78);
+  --mint-strong: rgba(208, 243, 229, 0.92);
+  --blue: #0000ff;
+}
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font:
+    16px/1.8
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "PingFang TC",
+    "PingFang SC",
+    "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN",
+    "Noto Sans TC",
+    "Noto Sans SC",
+    "Noto Sans JP",
+    "Microsoft JhengHei",
+    "Microsoft YaHei",
+    system-ui,
+    sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 28px 22px 78px;
+}
+.hero {
+  margin-bottom: 28px;
+}
+.hero-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.pack-chip {
+  display: inline-block;
+  font-size: 13px;
+  color: #3e5a4e;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+.page-title {
+  margin: 0 0 6px;
+  font-size: 30px;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.page-note {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.media-block {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.media-block img {
+  display: block;
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(35, 69, 52, 0.1);
+}
+button,
+.hero-audio-btn,
+.ghost-btn,
+#pack-drawer-toggle {
+  border: 1px solid rgba(35, 65, 53, 0.22);
+  background: rgba(255, 255, 255, 0.75);
+  color: #274539;
+  border-radius: 7px;
+  padding: 1px 3px;
+  font-size: 12px;
+  line-height: 1.1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: none;
+  width: auto;
+  max-width: max-content;
+}
+
+button:hover,
+.hero-audio-btn:hover,
+.ghost-btn:hover,
+#pack-drawer-toggle:hover {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+.article {
+  display: grid;
+  gap: 20px;
+}
+.segment,
+.article-block {
+  display: grid;
+  gap: 8px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.segment:last-child,
+.article-block:last-child { border-bottom: none; }
+.segment-title,
+.article-subtitle {
+  margin: 0 0 1px;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.ja,
+.line-ja {
+  margin: 0;
+  white-space: pre-wrap;
+  font-size: 18px;
+  line-height: 1.78;
+}
+.zh,
+.line-zh {
+  margin: 0;
+  white-space: pre-wrap;
+  color: var(--blue);
+  font-size: 16px;
+  line-height: 1.72;
+}
+body.hide-translation .zh,
+body.hide-translation .line-zh {
+  display: none;
+}
+.ghost-btn {
+  min-width: 18px;
+  min-height: 18px;
+}
+.hero-audio-btn {
+  min-width: 18px;
+  min-height: 18px;
+  place-self: start;
+}
+#pack-drawer-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: 14px;
+  z-index: 10002;
+  color: rgba(43, 96, 74, 0.9);
+  font-size: 14px;
+  opacity: 0.95;
+}
+#pack-mobile-drawer {
+  position: fixed;
+  right: 16px;
+  bottom: 38px;
+  width: 176px;
+  max-height: 46vh;
+  overflow: auto;
+  z-index: 10001;
+  padding: 7px;
+  border: 1px solid rgba(43, 97, 75, 0.2);
+  background: var(--mint);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  box-shadow: 0 9px 26px rgba(18, 42, 32, 0.1);
+  display: none;
+}
+#pack-mobile-drawer.is-open { display: block; }
+#pack-mobile-drawer-list {
+  display: grid;
+  gap: 4px;
+}
+.pack-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 9px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #234135;
+  cursor: pointer;
+  user-select: none;
+}
+.pack-item.active {
+  background: rgba(255,255,255,0.7);
+  font-weight: 600;
+}
+.pack-item .emoji,
+.pack-item-prefix { width: 18px; text-align: center; }
+@media (max-width: 720px) {
+  .page {
+    padding: 20px 16px 84px;
+  }
+  .page-title {
+    font-size: 24px;
+  }
+  .line-ja { font-size: 17px; }
+  .line-zh { font-size: 15px; }
+  #pack-mobile-drawer {
+    width: 154px;
+    right: 12px;
+    bottom: 36px;
+  }
+  #pack-drawer-toggle {
+    right: 12px;
+    bottom: 12px;
+  }
+}

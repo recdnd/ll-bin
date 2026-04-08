@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Listening Script</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="llfavicon32.png">
+  <link rel="stylesheet" href="listening-style.css">
+</head>
+<body>
+  <aside id="pack-mobile-drawer" aria-label="Pack selector">
+    <div id="pack-mobile-drawer-list"></div>
+  </aside>
+
+  <button id="pack-drawer-toggle" type="button" aria-label="Pack list" aria-expanded="false">◿</button>
+
+  <main class="page">
+    <header class="hero">
+      <div class="hero-top">
+        <div id="pack-switch" class="pack-chip">ll.bin.ooo</div>
+        <div class="hero-actions">
+          <button id="toggle-translation" class="ghost-btn" type="button">隱</button>
+        </div>
+      </div>
+      <h1 id="page-title" class="page-title"></h1>
+      <p id="page-desc" class="page-note"></p>
+      <div class="media-block">
+        <img id="hero-image" alt="cover" style="display:none;">
+        <button id="hero-audio-toggle" class="hero-audio-btn" type="button" style="display:none;" aria-pressed="false" aria-label="播放或停止音訊">🎧</button>
+      </div>
+    </header>
+
+    <article id="article" class="article"></article>
+  </main>
+
+  <script src="listening-script.js"></script>
+</body>
+</html>
