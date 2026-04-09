@@ -36,6 +36,9 @@
 
           const raw = await resp.text();
           const parsedQuestions = parseFullScriptPairs(raw);
+          if (!parsedQuestions.length) {
+            throw new Error("格式不符：請使用 ===SEGMENT=== / JP: / ZH:");
+          }
 
           window.PACK.questions = parsedQuestions;
         } catch (e) {
@@ -84,39 +87,33 @@
     const text = String(raw || "").replace(/\r\n/g, "\n").trim();
     if (!text) return [];
 
-    const blocks = text.split(/\n\s*\n+/).map(function (s) { return s.trim(); }).filter(Boolean);
+    const blocks = text.split("===SEGMENT===")
+      .map(function (s) { return s.trim(); })
+      .filter(Boolean);
 
     const questions = [];
     let id = 1;
 
     blocks.forEach(function (block) {
       const lines = block.split("\n").map(function (s) { return s.trim(); }).filter(Boolean);
+      const jpLines = [];
+      const zhLines = [];
 
-      if (lines.length === 1) {
-        questions.push({
-          id: id++,
-          title: "",
-          variants: [
-            {
-              text: lines[0],
-              translation: ""
-            }
-          ]
-        });
-        return;
-      }
-
-      // 預設：第一行日文，剩下全部拼成中文
-      const jp = lines[0];
-      const zh = lines.slice(1).join("\n");
+      lines.forEach(function (line) {
+        if (line.startsWith("JP:")) {
+          jpLines.push(line.slice(3).trim());
+        } else if (line.startsWith("ZH:")) {
+          zhLines.push(line.slice(3).trim());
+        }
+      });
 
       questions.push({
         id: id++,
         title: "",
         variants: [
           {
-            text: jp,
-            translation: zh
+            text: jpLines.join("\n"),
+            translation: zhLines.join("\n")
           }
         ]
       });
